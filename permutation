@@ -1,0 +1,29 @@
+/* Borrowed from geeksforgeeks.com 
+  this is most important program for me
+  find permutation for given strings
+*/
+#include<stdio.h>
+#include<string.h>
+void swap(char *x,char *y){
+	char temp=*y;
+	*y=*x;
+	*x=temp;
+}
+void permutate(char *str,int l,int a){
+	int i;
+	if(l==a){
+		printf("%s\n",str);
+	}
+	else{
+		for(i=l;i<=a;i++){
+			swap((str+l),(str+i));
+			permutate(str,l+1,a);                 // uses recursion procedure for finding permutation
+			swap((str+l),(str+i));               
+		}
+	}
+}
+int main(){
+	char str[]="abc";
+	permutate(str,0,strlen(str)-1);
+	return 0;
+}	

@@ -1,0 +1,84 @@
+//Need to change code if given r value is maximum (r-rotation)
+
+#include<stdio.h>
+int n,m,r;
+void test_top(int a[n][m]);
+void swap(int *x,int *y){                   // swap function
+	int temp;
+	temp=*x;
+	*x=*y;
+	*y=temp;
+}
+void display(int a[n][m]){                    //display function
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			printf("%d ",a[i][j]);
+		}
+		printf("\n");
+	}	
+}
+void test_lside(int a[n][m]){                 //swapping left side values present in the matrix
+	int i,j=0,ni=n-1,tmpi=1;
+	//printf("test left side %d\n",j);
+	for(;j<(n/2);j++){
+		for(i=ni;i>tmpi;i--)
+			swap(&a[i][j],&a[i-1][j]);
+		ni--;
+		tmpi++;
+	}
+	--r;
+	if(r==0){                                  //the rotation is done until r is 0
+		display(a);
+	}else
+		test_top(a);
+}
+void test_bottom(int a[n][m]){              //swapping bottom values present in matrix
+	int i=n-1,j,tmpj=0,mi=m-1;
+	//printf("test bottom %d\n",i);
+	for(;i>=(n/2);i--){
+		for(j=mi;j>tmpj;j--)
+			swap(&a[i][j],&a[i][j-1]);
+		mi--;
+		tmpj++;
+	}
+	//display(a);
+	test_lside(a);
+}
+void test_side(int a[n][m]){            //swapping right side values present in the matrix
+	int i,tmpi=0,j,ni=n-1;
+	//printf("test side \n");
+	for(j=m-1;j>=(m/2);j--){
+		for(i=tmpi;i<ni;i++)
+			swap(&a[i][j],&a[i+1][j]);
+		tmpi++;
+		ni--;
+	}
+	//display(a);
+	test_bottom(a);
+}
+void test_top(int a[n][m]){             // for swaping the top values present  in matrix
+	int i,j,mi;
+	mi=m-1;
+	for(i=0;i<(n/2);i++){
+		for(j=i;j<mi;j++){
+			swap(&a[i][j],&a[i][j+1]);
+		}
+		mi--;
+	}
+	//display(a);
+	test_side(a);
+}
+int main(){
+	int i,j;
+	long int ri;
+	scanf("%d %d %d",&n,&m,&ri);
+	r=ri
+	int a[n][m];
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++)
+			scanf("%d",&a[i][j]);
+	}
+	test_top(a);
+	return 0;
+}
