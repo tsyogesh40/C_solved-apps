@@ -14,7 +14,7 @@ int main()
     {
         if(j>0)
         {
-         a+=k+2+j;
+         a+=n+k-j+1;
          printf("%d ",a);
         }
         z--;
