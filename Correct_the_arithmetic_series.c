@@ -1,10 +1,10 @@
-Given a arithmetic series 
+/*Given a arithmetic series 
 
 i/p:2 4 5 6 8
  here 5 is wrong term in series other number are in difference of 2
  
 o/p: 5
-
+*/
 #include<stdio.h>
 #include<stdlib.h>
 int point=0;
